@@ -1,11 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 export default function App() {
+  const [counter, setCounter] = useState(0)
   return (
     <View style={styles.container}>
       <Text style={styles.title}>App Contador</Text>
-      <StatusBar style="auto" />
+
+      <View style={styles.counterArea}>
+      <TouchableOpacity onPress={() => setCounter(counter + 1)}>
+        <Text>+</Text>
+      </TouchableOpacity>
+
+      <Text testID='counter'>{counter}</Text>
+
+      <TouchableOpacity onPress={() => setCounter(counter - 1)}>
+        <Text>-</Text>
+      </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -20,5 +32,10 @@ const styles = StyleSheet.create({
   title:{
     fontSize: 18,
     fontWeight: 'bold'
+  },
+  counterArea:{
+    flexDirection: 'row',
+    gap: 14,
+    marginVertical: 14
   }
 });
